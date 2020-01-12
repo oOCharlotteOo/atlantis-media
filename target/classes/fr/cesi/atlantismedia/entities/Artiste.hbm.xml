@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Artiste" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="artiste">
+        <id name="idArtiste" type="int">
+            <column name="id_artiste"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="nom" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="nom" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="prenom" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="prenom"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="false" lazy="true" mutable="true" name="typeArtistes" optimistic-lock="true" sort="unsorted" table="artiste_type_artiste">
+            <key on-delete="noaction">
+                <column name="id_artiste" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="fr.cesi.atlantismedia.entities.TypeArtiste" not-found="exception" unique="false">
+                <column name="id_type_artiste" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="oeuvreArtistes" optimistic-lock="true" sort="unsorted" table="oeuvre_artiste">
+            <key on-delete="noaction">
+                <column name="id_artiste" not-null="true"/>
+            </key>
+            <one-to-many class="fr.cesi.atlantismedia.entities.OeuvreArtiste" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

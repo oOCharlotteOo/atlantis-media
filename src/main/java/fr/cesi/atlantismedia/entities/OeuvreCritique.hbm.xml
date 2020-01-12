@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.OeuvreCritique" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="oeuvre_critique">
+        <composite-id class="fr.cesi.atlantismedia.entities.OeuvreCritiqueId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="idOeuvre" type="int">
+                <column name="id_oeuvre"/>
+            </key-property>
+            <key-property name="idCritique" type="int">
+                <column name="id_critique"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="fr.cesi.atlantismedia.entities.Critique" embed-xml="true" fetch="select" insert="false" name="critique" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="id_critique" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="fr.cesi.atlantismedia.entities.Oeuvre" embed-xml="true" fetch="select" insert="false" name="oeuvre" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="id_oeuvre" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="dateDeCommentaire" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="date_de_commentaire"/>
+        </property>
+    </class>
+</hibernate-mapping>

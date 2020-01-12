@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Origine" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="origine">
+        <id name="idOrigine" type="int">
+            <column name="id_origine"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="libelle" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="libelle"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="oeuvres" optimistic-lock="true" sort="unsorted" table="oeuvre">
+            <key on-delete="noaction">
+                <column name="id_origine" not-null="true"/>
+            </key>
+            <one-to-many class="fr.cesi.atlantismedia.entities.Oeuvre" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/atlantismedia?serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="fr/cesi/atlantismedia/entities/Genre.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/TypeArtiste.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Categorie.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Langue.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Origine.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Artiste.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Morceaux.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Oeuvre.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Support.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/OeuvreCritique.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Statut.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/OeuvreArtiste.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Critique.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

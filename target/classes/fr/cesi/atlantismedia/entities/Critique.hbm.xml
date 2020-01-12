@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Critique" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="critique">
+        <id name="idCritique" type="int">
+            <column name="id_critique"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="commentaire" optimistic-lock="true" type="string" unique="false">
+            <column length="250" name="commentaire"/>
+        </property>
+        <property generated="never" lazy="false" name="note" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="note"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="oeuvreCritiques" optimistic-lock="true" sort="unsorted" table="oeuvre_critique">
+            <key on-delete="noaction">
+                <column name="id_critique" not-null="true"/>
+            </key>
+            <one-to-many class="fr.cesi.atlantismedia.entities.OeuvreCritique" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
