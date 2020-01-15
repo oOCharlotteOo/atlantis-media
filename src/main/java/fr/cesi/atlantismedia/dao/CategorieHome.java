@@ -1,15 +1,13 @@
 package fr.cesi.atlantismedia.dao;
-// Generated 12 janv. 2020 17:03:34 by Hibernate Tools 5.4.7.Final
+// Generated 15 janv. 2020 14:03:23 by Hibernate Tools 5.4.7.Final
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import fr.cesi.atlantismedia.entities.Categorie;
 import fr.cesi.atlantismedia.utils.HibernateUtils;
@@ -25,9 +23,6 @@ public class CategorieHome {
 
 	private final Session session = getSession();
 	
-	public CategorieHome() {
-		
-	}
 	
 	protected Session getSession() {
 		try {
@@ -40,7 +35,7 @@ public class CategorieHome {
 			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
 		}
 	}
-
+//méthode pour créer=persist (create) une entrée dans la base de données
 	public void persist(Categorie transientInstance) {
 		logger.log(Level.INFO, "persisting Categorie instance");
 		try {
@@ -94,7 +89,7 @@ public class CategorieHome {
 		}
 	}
 
-	public Categorie merge(Categorie detachedInstance) {
+	/*public Categorie merge(Categorie detachedInstance) {
 		logger.log(Level.INFO, "merging Categorie instance");
 		try {
 			Categorie result = (Categorie) session.merge(detachedInstance);
@@ -104,7 +99,7 @@ public class CategorieHome {
 			logger.log(Level.SEVERE, "merge failed", re);
 			throw re;
 		}
-	}
+	}*/
 
 	public Categorie findById(int id) {
 		logger.log(Level.INFO, "getting Categorie instance with id: " + id);
@@ -125,7 +120,8 @@ public class CategorieHome {
 	public List<Categorie> findAll() {
 		logger.log(Level.INFO, "getting All Categorie instance");
 		try {
-			String sql = "Select cat from Categorie cat ";
+			String sql = "Select categorie from Categorie categorie ";
+			@SuppressWarnings("deprecation")
 			Query<Categorie> query = session.createQuery(sql);
 			List<Categorie> instance = query.getResultList();
 			if (instance == null) {
@@ -143,8 +139,8 @@ public class CategorieHome {
 	public List<Categorie> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Categorie instance");
 		try {
-			String sql = "select cat from Categorie cat "
-					+ " where cat.libelle = :libelle" ;
+			String sql = "select categorie from Categorie categorie "
+					+ " where categorie.libelle = :libelle" ;
 			Query<Categorie> query = session.createQuery(sql);
 			query.setParameter("libelle", libelle);
 			List<Categorie> instance = query.getResultList();
@@ -160,7 +156,7 @@ public class CategorieHome {
 		}
 	}
 
-	public List findByExample(Categorie instance) {
+	/*public List findByExample(Categorie instance) {
 		logger.log(Level.INFO, "finding Categorie instance by example");
 		try {
 			List results = session.createCriteria("fr.cesi.atlantismedia.entities.Categorie")
@@ -171,5 +167,5 @@ public class CategorieHome {
 			logger.log(Level.SEVERE, "find by example failed", re);
 			throw re;
 		}
-	}
+	}*/
 }

@@ -1,5 +1,5 @@
 package fr.cesi.atlantismedia.entities;
-// Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final
+// Generated 15 janv. 2020 14:02:11 by Hibernate Tools 5.4.7.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Oeuvre implements java.io.Serializable {
 	private Statut statut;
 	private Support support;
 	private String titre;
-	private Integer duree;
+	private String duree;
 	private String codeIsbn;
 	private Date dateAcquisition;
 	private Set genres = new HashSet(0);
@@ -38,7 +38,7 @@ public class Oeuvre implements java.io.Serializable {
 	}
 
 	public Oeuvre(int idOeuvre, Categorie categorie, Origine origine, Statut statut, Support support, String titre,
-			Integer duree, String codeIsbn, Date dateAcquisition, Set genres, Set oeuvreArtistes, Set oeuvreCritiques,
+			String duree, String codeIsbn, Date dateAcquisition, Set genres, Set oeuvreArtistes, Set oeuvreCritiques,
 			Set langues, Set morceauxes) {
 		this.idOeuvre = idOeuvre;
 		this.categorie = categorie;
@@ -104,11 +104,11 @@ public class Oeuvre implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	public Integer getDuree() {
+	public String getDuree() {
 		return this.duree;
 	}
 
-	public void setDuree(Integer duree) {
+	public void setDuree(String duree) {
 		this.duree = duree;
 	}
 

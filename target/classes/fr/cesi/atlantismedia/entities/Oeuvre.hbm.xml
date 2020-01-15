@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2020 14:02:12 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Oeuvre" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="oeuvre">
         <id name="idOeuvre" type="int">
@@ -21,8 +21,8 @@
         <property generated="never" lazy="false" name="titre" optimistic-lock="true" type="string" unique="false">
             <column length="50" name="titre" not-null="true"/>
         </property>
-        <property generated="never" lazy="false" name="duree" optimistic-lock="true" type="java.lang.Integer" unique="false">
-            <column name="duree"/>
+        <property generated="never" lazy="false" name="duree" optimistic-lock="true" type="string" unique="false">
+            <column length="11" name="duree"/>
         </property>
         <property generated="never" lazy="false" name="codeIsbn" optimistic-lock="true" type="string" unique="false">
             <column length="50" name="code_isbn"/>

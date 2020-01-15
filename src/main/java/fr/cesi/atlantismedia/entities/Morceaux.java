@@ -1,5 +1,5 @@
 package fr.cesi.atlantismedia.entities;
-// Generated 12 janv. 2020 19:04:39 by Hibernate Tools 5.4.7.Final
+// Generated 15 janv. 2020 14:02:11 by Hibernate Tools 5.4.7.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,19 +11,19 @@ public class Morceaux implements java.io.Serializable {
 
 	private int idMorceaux;
 	private String titreMorceaux;
-	private int duree;
+	private String duree;
 	private Set oeuvres = new HashSet(0);
 
 	public Morceaux() {
 	}
 
-	public Morceaux(int idMorceaux, String titreMorceaux, int duree) {
+	public Morceaux(int idMorceaux, String titreMorceaux, String duree) {
 		this.idMorceaux = idMorceaux;
 		this.titreMorceaux = titreMorceaux;
 		this.duree = duree;
 	}
 
-	public Morceaux(int idMorceaux, String titreMorceaux, int duree, Set oeuvres) {
+	public Morceaux(int idMorceaux, String titreMorceaux, String duree, Set oeuvres) {
 		this.idMorceaux = idMorceaux;
 		this.titreMorceaux = titreMorceaux;
 		this.duree = duree;
@@ -46,11 +46,11 @@ public class Morceaux implements java.io.Serializable {
 		this.titreMorceaux = titreMorceaux;
 	}
 
-	public int getDuree() {
+	public String getDuree() {
 		return this.duree;
 	}
 
-	public void setDuree(int duree) {
+	public void setDuree(String duree) {
 		this.duree = duree;
 	}
 
