@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 16 janv. 2020 21:29:33 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="atlantismedia" dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Casting" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="casting">
+        <id name="idCasting" type="java.lang.Integer">
+            <column name="id_casting"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="fr.cesi.atlantismedia.entities.Artiste" cascade="all" embed-xml="true" fetch="select" insert="true" name="artiste" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_artiste" />
+        </many-to-one>
+        <many-to-one class="fr.cesi.atlantismedia.entities.Oeuvre" cascade="all" embed-xml="true" fetch="select" insert="true" name="oeuvre" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_oeuvre" />
+        </many-to-one>
+        <property generated="never" lazy="false" name="anneeComposition" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="annee_composition"/>
+        </property>
+        <property generated="never" lazy="false" name="role" optimistic-lock="true" type="string" unique="false">
+            <column length="250" name="role"/>
+        </property>
+    </class>
+</hibernate-mapping>
