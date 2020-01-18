@@ -4,7 +4,7 @@
 
   <groupId>fr.cesi</groupId>
   <artifactId>atlantismedia</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>atlantismedia</name>
@@ -54,6 +54,17 @@
          <version>8.0.18</version>
      </dependency>
      
+   <!--Log4j2 API -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.8.2</version>
+    </dependency>
 
   </dependencies>
 </project>

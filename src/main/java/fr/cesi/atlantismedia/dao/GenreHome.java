@@ -10,24 +10,31 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.cesi.atlantismedia.entities.Genre;
+import fr.cesi.atlantismedia.entities.Oeuvre;
 import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Genre.
- * @see fr.cesi.atlantismedia.dao.Genre
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Genre
  */
 public class GenreHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(GenreHome.class.getName());
 
-	
+	/** The session. */
 	private final Session session = getSession();
 
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -36,6 +43,11 @@ public class GenreHome {
 		}
 	}
 	
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	public void persist(Genre transientInstance) {
 		logger.log(Level.INFO, "persisting Genre instance");
 		try {
@@ -50,6 +62,12 @@ public class GenreHome {
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 * @return the genre
+	 */
 	public Genre saveOrUpdate(Genre instance) {
 		logger.log(Level.INFO, "attaching dirty Genre instance");
 		try {
@@ -76,6 +94,11 @@ public class GenreHome {
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Genre persistentInstance) {
 		logger.log(Level.INFO, "deleting Genre instance");
 		try {
@@ -102,10 +125,16 @@ public class GenreHome {
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the genre
+	 */
 	public Genre findById(int id) {
 		logger.log(Level.INFO, "getting Genre instance with id: " + id);
 		try {
-			Genre instance = (Genre) session.get("fr.cesi.atlantismedia.dao.Genre", id);
+			Genre instance = (Genre) session.get("fr.cesi.atlantismedia.entities.Genre", id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
 			} else {
@@ -118,6 +147,11 @@ public class GenreHome {
 		}
 	}
 
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Genre> findAll() {
 		logger.log(Level.INFO, "getting All Genre instance");
 		try {
@@ -137,6 +171,12 @@ public class GenreHome {
 		}
 	}
 	
+	/**
+	 * Find by libelle.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Genre> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Genre instance");
 		try {
@@ -169,5 +209,30 @@ public class GenreHome {
 		}
 	}*/
 	
+	/**
+	 * Find oeuvre by genre.
+	 *
+	 * @param idGenre the id genre
+	 * @return the list
+	 */
+	public List<Oeuvre> findOeuvreByGenre(int idGenre) {
+
+		logger.log(Level.INFO, "getting All Oeuvre instance by genre");
+		try {
+			String sql = "select genre.oeuvres from Genre genre where genre.id = :idGenre";
+			Query<Oeuvre> query = session.createQuery(sql);
+			query.setParameter("idGenre", idGenre);
+			List<Oeuvre> instance = query.getResultList();
+			if (instance == null) {
+				logger.log(Level.INFO, "get successful, no instance found");
+			} else {
+				logger.log(Level.INFO, "get successful, instance found");
+			}
+			return instance;
+		} catch (RuntimeException re) {
+			logger.log(Level.SEVERE, "get failed", re);
+			throw re;
+		}
+	}
 
 }

@@ -14,19 +14,26 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Statut.
- * @see fr.cesi.atlantismedia.dao.Statut
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Statut
  */
 public class StatutHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(StatutHome.class.getName());
 
+/** The session. */
 private final Session session = getSession();
 	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -35,6 +42,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	public void persist(Statut transientInstance) {
 		logger.log(Level.INFO, "persisting Statut instance");
 		try {
@@ -49,6 +61,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
 	public void saveOrUpdate(Statut instance) {
 		logger.log(Level.INFO, "attaching dirty Statut instance");
 		try {
@@ -74,6 +91,11 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Statut persistentInstance) {
 		logger.log(Level.INFO, "deleting Statut instance");
 		try {
@@ -100,10 +122,16 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the statut
+	 */
 	public Statut findById(int id) {
 		logger.log(Level.INFO, "getting Statut instance with id: " + id);
 		try {
-			Statut instance = (Statut) session.get("fr.cesi.atlantismedia.dao.Statut", id);
+			Statut instance = (Statut) session.get("fr.cesi.atlantismedia.entities.Statut", id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
 			} else {
@@ -116,6 +144,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Statut> findAll() {
 		logger.log(Level.INFO, "getting All Statut instance");
 		try {
@@ -135,6 +168,12 @@ private final Session session = getSession();
 		}
 	}
 	
+	/**
+	 * Find by libelle.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Statut> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Statut instance");
 		try {

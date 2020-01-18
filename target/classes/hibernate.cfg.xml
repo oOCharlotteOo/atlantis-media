@@ -18,9 +18,8 @@
         <mapping resource="fr/cesi/atlantismedia/entities/Morceaux.hbm.xml"/>
         <mapping resource="fr/cesi/atlantismedia/entities/Oeuvre.hbm.xml"/>
         <mapping resource="fr/cesi/atlantismedia/entities/Support.hbm.xml"/>
-        <mapping resource="fr/cesi/atlantismedia/entities/OeuvreCritique.hbm.xml"/>
         <mapping resource="fr/cesi/atlantismedia/entities/Statut.hbm.xml"/>
-        <mapping resource="fr/cesi/atlantismedia/entities/OeuvreArtiste.hbm.xml"/>
         <mapping resource="fr/cesi/atlantismedia/entities/Critique.hbm.xml"/>
+        <mapping resource="fr/cesi/atlantismedia/entities/Casting.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

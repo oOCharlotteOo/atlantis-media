@@ -14,20 +14,27 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Categorie.
- * @see fr.cesi.atlantismedia.dao.Categorie
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Categorie
  */
 public class CategorieHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(CategorieHome.class.getName());
 
+	/** The session. */
 	private final Session session = getSession();
 	
 	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession();
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -35,6 +42,12 @@ public class CategorieHome {
 			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
 		}
 	}
+
+/**
+ * Persist.
+ *
+ * @param transientInstance the transient instance
+ */
 //méthode pour créer=persist (create) une entrée dans la base de données
 	public void persist(Categorie transientInstance) {
 		logger.log(Level.INFO, "persisting Categorie instance");
@@ -50,6 +63,11 @@ public class CategorieHome {
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
 	public void saveOrUpdate(Categorie instance) {
 		logger.log(Level.INFO, "attaching dirty Categorie instance");
 		try {
@@ -75,6 +93,11 @@ public class CategorieHome {
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Categorie persistentInstance) {
 		logger.log(Level.INFO, "deleting Categorie instance");
 		try {
@@ -101,6 +124,12 @@ public class CategorieHome {
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the categorie
+	 */
 	public Categorie findById(int id) {
 		logger.log(Level.INFO, "getting Categorie instance with id: " + id);
 		try {
@@ -117,6 +146,11 @@ public class CategorieHome {
 		}
 	}
 	
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Categorie> findAll() {
 		logger.log(Level.INFO, "getting All Categorie instance");
 		try {
@@ -136,6 +170,12 @@ public class CategorieHome {
 		}
 	}
 	
+	/**
+	 * Find by libelle.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Categorie> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Categorie instance");
 		try {

@@ -1,31 +1,38 @@
 package fr.cesi.atlantismedia.dao;
 // Generated 15 janv. 2020 14:03:23 by Hibernate Tools 5.4.7.Final
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import fr.cesi.atlantismedia.entities.OeuvreArtiste;
-import fr.cesi.atlantismedia.entities.OeuvreArtisteId;
+import fr.cesi.atlantismedia.entities.Casting;
 import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
- * Home object for domain model class OeuvreArtiste.
- * @see fr.cesi.atlantismedia.dao.OeuvreArtiste
- * @author Hibernate Tools
+ * Home object for domain model class Casting.
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Casting
  */
-public class OeuvreArtisteHome {
+public class CastingHome {
 
-	private static final Logger logger = Logger.getLogger(OeuvreArtisteHome.class.getName());
+	/** The Constant logger. */
+	private static final Logger logger = Logger.getLogger(CastingHome.class.getName());
 
-	private final Session session = getSession();
-
+/** The session. */
+private final Session session = getSession();
+	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -34,8 +41,13 @@ public class OeuvreArtisteHome {
 		}
 	}
 
-	public void persist(OeuvreArtiste transientInstance) {
-		logger.log(Level.INFO, "persisting OeuvreArtiste instance");
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
+	public void persist(Casting transientInstance) {
+		logger.log(Level.INFO, "persisting Casting instance");
 		try {
 			session.getTransaction().begin();
 			session.persist(transientInstance);
@@ -48,8 +60,13 @@ public class OeuvreArtisteHome {
 		}
 	}
 
-	public void saveOrUpdate(OeuvreArtiste instance) {
-		logger.log(Level.INFO, "attaching dirty OeuvreArtiste instance");
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
+	public void saveOrUpdate(Casting instance) {
+		logger.log(Level.INFO, "attaching dirty Casting instance");
 		try {
 			session.getTransaction().begin();
 			session.saveOrUpdate(instance);
@@ -62,8 +79,8 @@ public class OeuvreArtisteHome {
 		}
 	}
 
-	/*public void attachClean(OeuvreArtiste instance) {
-		logger.log(Level.INFO, "attaching clean OeuvreArtiste instance");
+	/*public void attachClean(Casting instance) {
+		logger.log(Level.INFO, "attaching clean Casting instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			logger.log(Level.INFO, "attach successful");
@@ -73,8 +90,13 @@ public class OeuvreArtisteHome {
 		}
 	}*/
 
-	public void delete(OeuvreArtiste persistentInstance) {
-		logger.log(Level.INFO, "deleting OeuvreArtiste instance");
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
+	public void delete(Casting persistentInstance) {
+		logger.log(Level.INFO, "deleting Casting instance");
 		try {
 			session.getTransaction().begin();
 			session.delete(persistentInstance);
@@ -87,10 +109,10 @@ public class OeuvreArtisteHome {
 		}
 	}
 
-	/*public OeuvreArtiste merge(OeuvreArtiste detachedInstance) {
-		logger.log(Level.INFO, "merging OeuvreArtiste instance");
+	/*public Casting merge(Casting detachedInstance) {
+		logger.log(Level.INFO, "merging Casting instance");
 		try {
-			OeuvreArtiste result = (OeuvreArtiste) sessionFactory.getCurrentSession().merge(detachedInstance);
+			Casting result = (Casting) sessionFactory.getCurrentSession().merge(detachedInstance);
 			logger.log(Level.INFO, "merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -99,10 +121,16 @@ public class OeuvreArtisteHome {
 		}
 	}*/
 
-	public OeuvreArtiste findById(OeuvreArtisteId id) {
-		logger.log(Level.INFO, "getting OeuvreArtiste instance with id: " + id);
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the casting
+	 */
+	public Casting findById(int id) {
+		logger.log(Level.INFO, "getting Casting instance with id: " + id);
 		try {
-			OeuvreArtiste instance = (OeuvreArtiste) session.get("fr.cesi.atlantismedia.dao.OeuvreArtiste", id);
+			Casting instance = (Casting) session.get("fr.cesi.atlantismedia.entities.Casting", id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
 			} else {
@@ -115,10 +143,34 @@ public class OeuvreArtisteHome {
 		}
 	}
 
-	/*public List findByExample(OeuvreArtiste instance) {
-		logger.log(Level.INFO, "finding OeuvreArtiste instance by example");
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
+	public List<Casting> findAll() {
+		logger.log(Level.INFO, "getting All Casting instance");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("fr.cesi.atlantismedia.dao.OeuvreArtiste")
+			String sql = "Select casting from Casting casting ";
+			@SuppressWarnings("deprecation")
+			Query<Casting> query = session.createQuery(sql);
+			List<Casting> instance = query.getResultList();
+			if (instance == null) {
+				logger.log(Level.INFO, "get successful, no instance found");
+			} else {
+				logger.log(Level.INFO, "get successful, instance found");
+			}
+			return instance;
+		} catch (RuntimeException re) {
+			logger.log(Level.SEVERE, "get failed", re);
+			throw re;
+		}
+	}
+
+	/*public List findByExample(Casting instance) {
+		logger.log(Level.INFO, "finding Casting instance by example");
+		try {
+			List results = sessionFactory.getCurrentSession().createCriteria("fr.cesi.atlantismedia.dao.Casting")
 					.add(Example.create(instance)).list();
 			logger.log(Level.INFO, "find by example successful, result size: " + results.size());
 			return results;

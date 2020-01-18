@@ -14,19 +14,26 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Support.
- * @see fr.cesi.atlantismedia.dao.Support
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Support
  */
 public class SupportHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(SupportHome.class.getName());
 
+/** The session. */
 private final Session session = getSession();
 	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -35,6 +42,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	public void persist(Support transientInstance) {
 		logger.log(Level.INFO, "persisting Support instance");
 		try {
@@ -49,6 +61,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
 	public void saveOrUpdate(Support instance) {
 		logger.log(Level.INFO, "attaching dirty Support instance");
 		try {
@@ -74,6 +91,11 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Support persistentInstance) {
 		logger.log(Level.INFO, "deleting Support instance");
 		try {
@@ -100,10 +122,16 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the support
+	 */
 	public Support findById(int id) {
 		logger.log(Level.INFO, "getting Support instance with id: " + id);
 		try {
-			Support instance = (Support) session.get("fr.cesi.atlantismedia.dao.Support",
+			Support instance = (Support) session.get("fr.cesi.atlantismedia.entities.Support",
 					id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
@@ -117,6 +145,11 @@ private final Session session = getSession();
 		}
 	}
 	
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Support> findAll() {
 		logger.log(Level.INFO, "getting All Support instance");
 		try {
@@ -136,6 +169,12 @@ private final Session session = getSession();
 		}
 	}
 	
+	/**
+	 * Find by libelle.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Support> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Support instance");
 		try {

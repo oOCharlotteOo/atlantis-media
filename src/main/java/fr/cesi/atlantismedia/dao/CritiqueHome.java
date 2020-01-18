@@ -14,19 +14,26 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Critique.
- * @see fr.cesi.atlantismedia.dao.Critique
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Critique
  */
 public class CritiqueHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(CritiqueHome.class.getName());
 
+/** The session. */
 private final Session session = getSession();
 	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -35,6 +42,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	public void persist(Critique transientInstance) {
 		logger.log(Level.INFO, "persisting Critique instance");
 		try {
@@ -49,6 +61,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
 	public void saveOrUpdate(Critique instance) {
 		logger.log(Level.INFO, "attaching dirty Critique instance");
 		try {
@@ -74,6 +91,11 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Critique persistentInstance) {
 		logger.log(Level.INFO, "deleting Critique instance");
 		try {
@@ -100,10 +122,16 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the critique
+	 */
 	public Critique findById(int id) {
 		logger.log(Level.INFO, "getting Critique instance with id: " + id);
 		try {
-			Critique instance = (Critique) session.get("fr.cesi.atlantismedia.dao.Critique",
+			Critique instance = (Critique) session.get("fr.cesi.atlantismedia.entities.Critique",
 					id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
@@ -117,6 +145,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Critique> findAll() {
 		logger.log(Level.INFO, "getting All Critique instance");
 		try {
@@ -136,6 +169,12 @@ private final Session session = getSession();
 		}
 	}
 	
+	/**
+	 * Find by titre.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Critique> findByTitre(String libelle) {
 		logger.log(Level.INFO, "getting All Critique instance");
 		try {

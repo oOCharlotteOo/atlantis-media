@@ -15,19 +15,26 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Origine.
- * @see fr.cesi.atlantismedia.dao.Origine
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Origine
  */
 public class OrigineHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(OrigineHome.class.getName());
 
+/** The session. */
 private final Session session = getSession();
 	
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession(); //on force l'ouverture de la session
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -36,6 +43,11 @@ private final Session session = getSession();
 		}
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	//méthode pour créer=persist (create) une entrée dans la base de données
 		public void persist(Origine transientInstance) {
 			logger.log(Level.INFO, "persisting Origine instance");
@@ -51,6 +63,11 @@ private final Session session = getSession();
 			}
 		}
 		
+		/**
+		 * Save or update.
+		 *
+		 * @param instance the instance
+		 */
 		public void saveOrUpdate(Origine instance) {
 			logger.log(Level.INFO, "attaching dirty Origine instance");
 			try {
@@ -76,7 +93,12 @@ private final Session session = getSession();
 		}
 	}*/
 
-		public void delete(Origine persistentInstance) {
+		/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
+	public void delete(Origine persistentInstance) {
 			logger.log(Level.INFO, "deleting Origine instance");
 			try {
 				session.getTransaction().begin();
@@ -102,10 +124,16 @@ private final Session session = getSession();
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the origine
+	 */
 	public Origine findById(int id) {
 		logger.log(Level.INFO, "getting Origine instance with id: " + id);
 		try {
-			Origine instance = (Origine) session.get("fr.cesi.atlantismedia.dao.Origine",
+			Origine instance = (Origine) session.get("fr.cesi.atlantismedia.entities.Origine",
 					id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
@@ -120,6 +148,11 @@ private final Session session = getSession();
 	}
 
 	
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Origine> findAll() {
 		logger.log(Level.INFO, "getting All Origine instance");
 		try {
@@ -139,6 +172,12 @@ private final Session session = getSession();
 		}
 	}
 	
+	/**
+	 * Find by libelle.
+	 *
+	 * @param libelle the libelle
+	 * @return the list
+	 */
 	public List<Origine> findByLibelle(String libelle) {
 		logger.log(Level.INFO, "getting All Origine instance");
 		try {

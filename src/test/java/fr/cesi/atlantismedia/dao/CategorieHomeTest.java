@@ -8,12 +8,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * The Class CategorieHomeTest.
+ */
 public class CategorieHomeTest {
 
+    /** The session factory. */
     private SessionFactory sessionFactory;
 
+    /** The session. */
     private Session session = null;
 
+    /**
+     * Before.
+     */
     @Before
     public void before() {
 
@@ -25,6 +33,11 @@ public class CategorieHomeTest {
 
     }
     
+    /**
+     * Creates the session factory.
+     *
+     * @return the session factory
+     */
     private SessionFactory createSessionFactory() {
 
      // setup the session factory
@@ -49,10 +62,18 @@ public class CategorieHomeTest {
      return sessionFactory;
     }
 
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		/*CategorieHome cat = new CategorieHome ();

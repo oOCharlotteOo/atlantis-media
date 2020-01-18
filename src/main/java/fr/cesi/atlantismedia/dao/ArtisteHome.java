@@ -14,19 +14,26 @@ import fr.cesi.atlantismedia.utils.HibernateUtils;
 
 /**
  * Home object for domain model class Artiste.
- * @see fr.cesi.atlantismedia.dao.Artiste
- * @author Hibernate Tools
+ *
+ * @author oOCharlotteOo
+ * @see fr.cesi.atlantismedia.entities.Artiste
  */
 public class ArtisteHome {
 
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(ArtisteHome.class.getName());
 
+	/** The session. */
 	private final Session session = getSession();
 
+	/**
+	 * Gets the session.
+	 *
+	 * @return the session
+	 */
 	protected Session getSession() {
 		try {
-			SessionFactory factory = HibernateUtils.getSessionFactory();
-			Session session = factory.openSession();
+			Session session = HibernateUtils.getSession();
 			return session;
 			//return (SessionFactory) new InitialContext().lookup("SessionFactory");
 		} catch (Exception e) {
@@ -35,11 +42,17 @@ public class ArtisteHome {
 		}
 	}
 
+	/**
+	 * Persist.
+	 *
+	 * @param transientInstance the transient instance
+	 */
 	public void persist(Artiste transientInstance) {
 		logger.log(Level.INFO, "persisting Artiste instance");
 		try {
 			session.getTransaction().begin();
 			session.persist(transientInstance);
+			session.flush();
 			session.getTransaction().commit();
 			logger.log(Level.INFO, "persist successful");
 		} catch (RuntimeException re) {
@@ -49,6 +62,11 @@ public class ArtisteHome {
 		}
 	}
 
+	/**
+	 * Save or update.
+	 *
+	 * @param instance the instance
+	 */
 	public void saveOrUpdate(Artiste instance) {
 		logger.log(Level.INFO, "attaching dirty Artiste instance");
 		try {
@@ -74,6 +92,11 @@ public class ArtisteHome {
 		}
 	}*/
 
+	/**
+	 * Delete.
+	 *
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Artiste persistentInstance) {
 		logger.log(Level.INFO, "deleting Artiste instance");
 		try {
@@ -100,6 +123,12 @@ public class ArtisteHome {
 		}
 	}*/
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the artiste
+	 */
 	public Artiste findById(int id) {
 		logger.log(Level.INFO, "getting Artiste instance with id: " + id);
 		try {
@@ -116,6 +145,11 @@ public class ArtisteHome {
 		}
 	}
 	
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Artiste> findAll() {
 		logger.log(Level.INFO, "getting All Artiste instance");
 		try {
@@ -135,6 +169,12 @@ public class ArtisteHome {
 		}
 	}
 	
+	/**
+	 * Find by nom.
+	 *
+	 * @param nom the nom
+	 * @return the list
+	 */
 	public List<Artiste> findByNom(String nom) {
 		logger.log(Level.INFO, "getting All Artiste instance");
 		try {

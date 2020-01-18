@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 15 janv. 2020 14:02:12 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 janv. 2020 21:29:33 by Hibernate Tools 5.4.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
-    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Support" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="support">
-        <id name="idSupport" type="int">
+    <class catalog="atlantismedia" dynamic-insert="false" dynamic-update="false" mutable="true" name="fr.cesi.atlantismedia.entities.Support" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="support">
+        <id name="idSupport" type="java.lang.Integer">
             <column name="id_support"/>
-            <generator class="assigned"/>
+            <generator class="identity"/>
         </id>
         <property generated="never" lazy="false" name="libelle" optimistic-lock="true" type="string" unique="false">
             <column length="50" name="libelle" not-null="true"/>
