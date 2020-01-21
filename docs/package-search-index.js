@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.cesi.atlantismedia.entities"},{"l":"fr.cesi.atlantismedia.utils"}]
