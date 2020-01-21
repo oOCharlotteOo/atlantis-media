@@ -1,5 +1,6 @@
 package fr.cesi.atlantismedia;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,6 @@ import fr.cesi.atlantismedia.entities.Support;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
 /**
  * Unit test for simple App.
  */
@@ -57,12 +57,14 @@ public class AppTest
      */
     public void testCreateOeuvre()
     {
+    	// Recherche un artiste
 		ArtisteHome artisteDao = new ArtisteHome();
 		Artiste artistel = artisteDao.findById(1);
 		Set<Artiste> artistes = new HashSet<Artiste>();
 		
 		artistes.add(artistel);
 		
+		// Casting = artiste + oeuvre
 		Casting casting = new Casting();
 		casting.setArtiste(artistel);
 		casting.setAnneeComposition(2009);
@@ -71,27 +73,34 @@ public class AppTest
 		Set<Casting> castings = new HashSet<Casting>();
 		castings.add(casting);
 		
+		//Recherche Categorie
 		CategorieHome catDao = new CategorieHome();
 		Categorie cat = catDao.findById(1);
 		
+		//Recherche Genre
 		GenreHome genreDao = new GenreHome();
 		Genre genre1 = genreDao.findById(14);
 		Set<Genre> genres = new HashSet<Genre>();
 		genres.add(genre1);
 		
+		//Recherche Origine
 		OrigineHome origineDao = new OrigineHome();
 		Origine origine = origineDao.findById(1);
 
+		//Recherche Langue
 		LangueHome langueHome = new LangueHome();
 		List<Langue> langueList = langueHome.findAll();
 		Set<Langue> langues = new HashSet<Langue>(langueList);
 		
+		//Recherche Statut
 		StatutHome statutHome = new StatutHome();
 		Statut statut = statutHome.findById(1);
 		
+		//Recherche Support
 		SupportHome supportHome = new SupportHome();
 		Support support = supportHome.findById(1);
 		
+		//Construction de l'objet oeuvre
 		Oeuvre oeuvre = new Oeuvre();
 		oeuvre.setTitre("Le seigneur des anneaux 3");
 		oeuvre.setCastings(castings);
@@ -102,8 +111,10 @@ public class AppTest
 		oeuvre.setStatut(statut);
 		oeuvre.setSupport(support);
 		
+		//Casting = Artiste + Oeuvre
 		casting.setOeuvre(oeuvre);
 		
+		//Insertion ou update de l'objet en base
 		OeuvreHome oeuvreDao = new OeuvreHome();
 		oeuvreDao.saveOrUpdate(oeuvre);  
 		
@@ -113,13 +124,16 @@ public class AppTest
     
     /**
      * Test get oeuvres.
+     * 
      */
     public void testGetOeuvres(){
+    	
+    	
     	OeuvreHome oeuvreDao = new OeuvreHome();
     	List<Oeuvre> oeuvres = oeuvreDao.findAll();
     	for (Oeuvre prout : oeuvres) {
             System.out.println("Oeuvre: " + prout.getTitre());            
-        }	
+        }
     	assertNotNull(oeuvres);
     }
     
